@@ -1,0 +1,101 @@
+{% extends "main/layoute.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="mb-4">
+    <h1 class="display-5 fw-bold">Экскурсия: “Закат на острове Ромейро”</h1>
+    <p class="text-muted fst-italic">Лёгкие приключения, природа, лобстеры и самый красивый закат</p>
+  </div>
+
+  <div class="text-center mb-4">
+    <img src="{% static 'main/img/sunset.jpg' %}" alt="Закат на Ромейро" class="img-fluid rounded shadow-sm" style="max-width: 600px;">
+  </div>
+
+  <div class="mb-4">
+    <p><strong>Время начала:</strong> 17:00</p>
+    <p><strong>Продолжительность:</strong> 3–3,5 часа</p>
+    <p><strong>Формат:</strong> Погружение в природу, лёгкие приключения и расслабленный вечер с лобстерами и закатом на воде.</p>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="fw-semibold mb-3">События и атмосфера — поэтапно</h5>
+
+    <ul class="list-group list-group-flush mb-4">
+      <li class="list-group-item">
+        <strong>16:30 — Сбор и выезд</strong><br>
+        • Привет от гида, welcome-дринк: мохито или лимонад<br>
+        • Снаряжение, рассказ о фауне, фото с табличкой
+      </li>
+      <li class="list-group-item">
+        <strong>17:00 — Остановка у отмели с игуанами</strong><br>
+        • Фото, кормление, кубинская музыка на фоне
+      </li>
+      <li class="list-group-item">
+        <strong>17:30 — Подводная экспедиция</strong><br>
+        • Снорклинг, ловля лобстеров, ламантин рядом
+      </li>
+      <li class="list-group-item">
+        <strong>18:15 — Закат в океане</strong><br>
+        • Ужин: лангусты, чимичурри, салат, ром<br>
+        • Фото, видео, аплодисменты на фоне солнца
+      </li>
+      <li class="list-group-item">
+        <strong>19:00 — Магия сумерек</strong><br>
+        • Гирлянды, танцы, лежим на борту, пиратские байки
+      </li>
+      <li class="list-group-item">
+        <strong>19:30 — Возвращение</strong><br>
+        • Музыка, чай из гибискуса, сувениры, спокойствие
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-4">
+    <h5 class="fw-semibold">Контент для соцсетей:</h5>
+    <ul class="list-unstyled">
+      <li>📽 <strong>“Лангуст под солнцем”</strong> — мини-ролик с ловлей и готовкой</li>
+      <li>🍹 <strong>“С тобой и ромом — закат вкуснее”</strong></li>
+      <li>🌊 <strong>“Кубинская Сиеста на воде”</strong> — романтический Reels</li>
+    </ul>
+  </div>
+
+  <!-- Кнопка бронирования -->
+  <div class="text-center mt-5">
+    <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
+      Забронировать экскурсию
+    </button>
+  </div>
+
+  <!-- Модальное окно -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-3 shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">Заявка на экскурсию</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="#">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Телефон / Telegram</label>
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="+7..." required>
+            </div>
+            <div class="mb-3">
+              <label for="notes" class="form-label">Комментарий</label>
+              <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Желаемая дата, количество человек и т.д."></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-success">Отправить</button>
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

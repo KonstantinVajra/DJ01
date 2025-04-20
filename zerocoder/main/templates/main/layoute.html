@@ -1,0 +1,38 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}IslaDjango{% endblock %}</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+</head>
+<body>
+
+<div class="d-flex min-vh-100">
+
+  <!-- Сайдбар -->
+  <aside class="bg-light border-end p-3 d-flex flex-column align-items-start text-start" style="width: 220px;">
+    <img src="{% static 'main/img/isla.jpg' %}" alt="IslaDjango"
+         class="img-fluid rounded mb-3" style="max-height: 180px;">
+    <strong class="mb-3">Остров Ромейро</strong>
+    {% include "main/nav.html" %}
+  </aside>
+
+  <!-- Контент -->
+  <main class="flex-grow-1 p-4">
+    <div class="container fs-6 lh-base">
+      {% block content %}
+      {% endblock %}
+    </div>
+  </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

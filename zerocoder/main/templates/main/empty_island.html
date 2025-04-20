@@ -1,0 +1,71 @@
+{% extends "main/layoute.html" %}
+{% load static %}
+
+{% block content %}
+  <div class="mb-4">
+    <h1 class="display-5 fw-bold">Уединение для двоих</h1>
+    <p class="text-muted fst-italic">Иногда любовь нуждается в тишине</p>
+  </div>
+
+  <div class="text-center mb-4">
+    <img src="{% static 'main/img/oneforone.jpg' %}" alt="Уединение для двоих" class="img-fluid rounded shadow-sm" style="max-width: 600px;">
+  </div>
+
+  <div class="mb-4 fs-6 lh-base">
+    <p>
+      <strong>Без Wi-Fi. Без расписаний. Без чужих глаз.</strong>
+    </p>
+
+    <p>
+      Только вы двое — в центре необитаемого острова, где нет ничего… кроме всего самого важного.
+    </p>
+
+    <p>
+      Шепот волн, золотой закат, лёгкий чай с травами, книги, плед и ощущение, что мир исчез — чтобы остались только вы.
+    </p>
+
+    <p>
+      <strong>Это не экскурсия. Это глоток воздуха.</strong><br>
+      Это остров, который на пару часов принадлежит только вам.
+    </p>
+  </div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#bookingModal">
+      Забронировать момент
+    </button>
+  </div>
+
+  <!-- Модальное окно (то же, что и на других страницах) -->
+  <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content rounded-3 shadow-lg">
+        <div class="modal-header">
+          <h5 class="modal-title" id="bookingModalLabel">Заявка на уединение</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="#">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="name" class="form-label">Имя</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="Ваше имя" required>
+            </div>
+            <div class="mb-3">
+              <label for="phone" class="form-label">Телефон / Telegram</label>
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="+7..." required>
+            </div>
+            <div class="mb-3">
+              <label for="notes" class="form-label">Комментарий</label>
+              <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Желаемое время, пожелания..."></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-success">Отправить</button>
+              <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Отмена</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
